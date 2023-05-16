@@ -1,6 +1,12 @@
 import React, { FC, useState } from "react";
 
 /**
+ * O que são React hooks?
+ * São funções JavaScript que podemos usar para isolar 
+ * A parte reutilizável de um componente funcional
+ */
+
+/**
  * useState hook
  * Provavelmente o "hook" mais importante de React, permite-nos declarar e modificar estados locais
  * Assim que o estado é atualizado, o React efetua uma comparação da component tree
@@ -16,6 +22,7 @@ import React, { FC, useState } from "react";
 
 const IntroPage2: FC = () => {
   const [count, setCount] = useState(0);
+  
 
   return (
     <div>
