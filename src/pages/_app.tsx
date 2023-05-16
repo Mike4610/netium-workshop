@@ -8,9 +8,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     // <AuthenticationContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-      <div className="flex h-screen justify-center items-center bg-gray-50">
-        <Component {...pageProps} />
-      </div>
+    <div className="flex h-screen justify-center items-center bg-gray-50">
+      <Component {...pageProps} />
+    </div>
     // </AuthenticationContext.Provider>
   );
 }
