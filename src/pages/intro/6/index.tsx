@@ -1,3 +1,5 @@
+import { Input } from "@/components/Input";
+import { Todo } from "@/components/Todo";
 import React, { FC, useEffect, useState } from "react";
 
 /**
@@ -10,7 +12,7 @@ interface Todo {
   title: string;
 }
 
-const IntroPage5: FC = () => {
+const IntroPage6: FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [newTodo, setNewTodo] = useState<Todo>({} as Todo);
   const [completedTodos, setCompletedTodos] = useState<number[]>([]);
@@ -43,27 +45,23 @@ const IntroPage5: FC = () => {
       <div>
         {todos.map((todo) => {
           return (
-            <div
+            <Todo
               key={todo.id}
-              className="flex flex-row items-center justify-between hover:bg-gray-600 cursor-pointer p-4"
-            >
-              <p className="text-white">{todo.title}</p>
-              <input
-                type="checkbox"
-                checked={completedTodos.includes(todo.id)}
-                onChange={() => {
-                  if (completedTodos.includes(todo.id)) {
-                    setCompletedTodos(
-                      completedTodos.filter(
-                        (completedTodo) => completedTodo !== todo.id
-                      )
-                    );
-                  } else {
-                    setCompletedTodos([...completedTodos, todo.id]);
-                  }
-                }}
-              />
-            </div>
+              id={todo.id}
+              title={todo.title}
+              isChecked={completedTodos.includes(todo.id)}
+              onCheckboxChange={() => {
+                if (completedTodos.includes(todo.id)) {
+                  setCompletedTodos(
+                    completedTodos.filter(
+                      (completedTodo) => completedTodo !== todo.id
+                    )
+                  );
+                } else {
+                  setCompletedTodos([...completedTodos, todo.id]);
+                }
+              }}
+            />
           );
         })}
       </div>
@@ -74,19 +72,16 @@ const IntroPage5: FC = () => {
           setNewTodo({ ...newTodo, title: "" });
         }}
       >
-        <div className="absolute bottom-0 w-full bg-gray-600 h-12 px-4">
-          <input
-            value={newTodo.title}
-            onChange={(e) => {
-              setNewTodo({ ...newTodo, title: e.target.value });
-            }}
-            className="w-full bg-gray-600 h-12 outline-0 text-white"
-            placeholder="Insere a tua nova tarefa"
-          />
-        </div>
+        <Input
+          placeholder="Insere a tua nova tarefa"
+          value={newTodo.title}
+          onTextChange={(title) => {
+            setNewTodo({ ...newTodo, title });
+          }}
+        />
       </form>
     </div>
   );
 };
 
-export default IntroPage5;
+export default IntroPage6;
